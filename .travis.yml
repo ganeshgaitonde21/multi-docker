@@ -4,21 +4,21 @@ services:
   - docker
 
 before_install:
-  - docker build -t gg/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t padmanabh14/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -t gg/react-test npm test -- --coverage
+  - docker run -t padmanabh14/react-test npm test -- --coverage
 
 after_success:
-  - docker build -t gg/multi-client ./client
-  - docker build -t gg/multi-nginx ./nginx
-  - docker build -t gg/multi-server ./server
-  - docker build -t gg/multi-worker ./worker
+  - docker build -t padmanabh14/multi-client ./client
+  - docker build -t padmanabh14/multi-nginx ./nginx
+  - docker build -t padmanabh14/multi-server ./server
+  - docker build -t padmanabh14/multi-worker ./worker
 
   # Log into docker
   - echo "$DOCKER_PASS" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
-  - docker push gg/multi-client
-  - docker push gg/multi-nginx
-  - docker push gg/multi-server
-  - docker push gg/multi-worker
+  - docker push padmanabh14/multi-client
+  - docker push padmanabh14/multi-nginx
+  - docker push padmanabh14/multi-server
+  - docker push padmanabh14/multi-worker
